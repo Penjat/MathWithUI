@@ -7,16 +7,40 @@
 //
 
 #import "ViewController.h"
+#import "GameManager.h"
 
 @interface ViewController ()
 
+@property (strong, nonatomic) GameManager *gameManager;
+
 @end
+
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    _gameManager = [[GameManager alloc]init];
+    [self getRandomQuestion];
+    self.playerAnswer.text = @"0";
+}
+
+
+- (IBAction)pressNumber:(UIButton*)sender {
+    NSLog(@"%li",sender.tag);
+    _playerAnswer.text = [NSString stringWithFormat:@"%li", [self.gameManager addToAnswer:sender.tag] ];
+    
+}
+- (IBAction)subimtAnswer:(id)sender {
+    [self.gameManager submitAnswer];
+    [self getRandomQuestion];
+    self.playerAnswer.text = @"0";
+}
+
+
+
+-(void)getRandomQuestion{
+    self.question.text = [self.gameManager getRandomQuestion];
 }
 
 
