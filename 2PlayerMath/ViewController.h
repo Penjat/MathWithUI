@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *player2score;
 @property (weak, nonatomic) IBOutlet UIView *gameOverView;
 @property (weak, nonatomic) IBOutlet UILabel *curPlayer;
+@property (weak, nonatomic) IBOutlet UILabel *playerFeedback;
 
 
 
