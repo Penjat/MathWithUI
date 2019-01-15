@@ -56,7 +56,7 @@
             //fade in
             [UIView animateWithDuration:2.0f animations:^{
                 
-                [self.gameOverView setAlpha:0.7f];
+                [self.gameOverView setAlpha:1.0f];
                 
             }];
             return;
@@ -106,8 +106,20 @@
     self.curPlayer.textColor = UIColor.blueColor;
 }
 -(void)updateScores{
-    _player1score.text = [NSString stringWithFormat:@"player 1 lives: %li",_gameManager.player1Lives ];
-    _player2score.text = [NSString stringWithFormat:@"player 2 lives: %li",_gameManager.player2Lives ];
+    
+    NSLog(@"player 1 score is %li",_gameManager.player1Lives);
+    NSString *lives = @"";
+    for(int i=0;i<_gameManager.player1Lives;i++){
+        
+        lives = [lives stringByAppendingString:@"♥︎"];
+    }
+    _player1score.text = lives;
+    lives = @"";
+    for(int i=0;i<_gameManager.player2Lives;i++){
+        lives = [lives stringByAppendingString:@"♥︎"];
+    }
+    _player2score.text = lives;
+    
     
 }
 
