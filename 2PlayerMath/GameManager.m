@@ -60,11 +60,29 @@
     return NO;
 }
 -(NSString*)getRandomQuestion{
+    NSUInteger questionType = arc4random_uniform(4);
     NSInteger firstNumber = arc4random_uniform(20)+1;
     NSInteger secondNumber = arc4random_uniform(20)+1;
-    _correctAnswer = firstNumber + secondNumber;
     
-    return [NSString stringWithFormat:@"%li + %li",firstNumber,secondNumber ];
+    switch(questionType){
+        case 0:
+            _correctAnswer = firstNumber + secondNumber;
+            return [NSString stringWithFormat:@"%li + %li",firstNumber,secondNumber ];
+        case 1:
+            _correctAnswer = firstNumber - secondNumber;
+            return [NSString stringWithFormat:@"%li - %li",firstNumber,secondNumber ];
+        case 2:
+            _correctAnswer = firstNumber * secondNumber;
+            return [NSString stringWithFormat:@"%li * %li",firstNumber,secondNumber ];
+        case 3:
+            _correctAnswer = firstNumber / secondNumber;
+            return [NSString stringWithFormat:@"%li / %li",firstNumber,secondNumber ];
+        default:
+            _correctAnswer = firstNumber + secondNumber;
+            
+            return [NSString stringWithFormat:@"%li + %li",firstNumber,secondNumber ];
+    }
+    
 }
 -(void)loseLife{
     if(self.isPlayer1){
