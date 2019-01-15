@@ -153,14 +153,14 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXx-ZB-9nT">
                                 <rect key="frame" x="31" y="34" width="150" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" red="0.81808613989637302" green="0.0" blue="0.11351831901576426" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09x-WB-JTa">
                                 <rect key="frame" x="219" y="34" width="133" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" red="0.0" green="0.15072983208599897" blue="0.81808613989637302" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -203,6 +203,7 @@
                     </view>
                     <connections>
                         <outlet property="curPlayer" destination="rF8-kZ-H0o" id="IVe-ub-3w8"/>
+                        <outlet property="gameOverText" destination="z9F-oE-aCp" id="O2V-jg-tEW"/>
                         <outlet property="gameOverView" destination="Whx-VJ-fhJ" id="Q2d-dX-L0a"/>
                         <outlet property="player1score" destination="fXx-ZB-9nT" id="8J8-KS-nfl"/>
                         <outlet property="player2score" destination="09x-WB-JTa" id="zIh-ij-SfC"/>

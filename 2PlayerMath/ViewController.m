@@ -49,20 +49,7 @@
     if([self.gameManager submitAnswer]){
         [self updateScores];
         [self animateFeedbackWasCorrect:NO];
-        if([self.gameManager checkPlayer1Gameover]){
-            self.gameOverView.hidden = false;
-            
-            [self.gameOverView setAlpha:0.0f];
-            //fade in
-            [UIView animateWithDuration:2.0f animations:^{
-                
-                [self.gameOverView setAlpha:1.0f];
-                
-            }];
-            return;
-        }
-        if([self.gameManager checkPlayer2Gameover]){
-            self.gameOverView.hidden = false;
+        if([self checkGameOver]){
             return;
         }
         
@@ -72,6 +59,34 @@
     [self showCurPlayer];
     [self getRandomQuestion];
     self.playerAnswer.text = @"";
+}
+-(BOOL)checkGameOver{
+    if([self.gameManager checkPlayer1Gameover] || [self.gameManager checkPlayer2Gameover]){
+        self.gameOverView.hidden = false;
+        
+        [self.gameOverView setAlpha:0.0f];
+        //fade in
+        [UIView animateWithDuration:2.0f animations:^{
+            
+            [self.gameOverView setAlpha:1.0f];
+            
+        }];
+        
+        
+        self.gameOverText.transform = CGAffineTransformMakeRotation(-M_PI_4/2.5);
+        [UIView animateWithDuration:4.0f
+                              delay:0.0f
+                            options: UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState
+                         animations: ^(void){
+                             self.gameOverText.transform = CGAffineTransformMakeRotation(M_PI_4/2.5);
+                             
+                         }
+                         completion:NULL];
+        
+        return YES;
+    }
+    return NO;
+    
 }
 -(void)animateFeedbackWasCorrect:(BOOL)wasCorrect{
     
@@ -88,6 +103,7 @@
     CGPoint startPoint = CGPointMake(_playerAnswer.center.x ,_playerAnswer.center.y);
     self.playerFeedback.center = startPoint;
     //self.playerFeedback.center = CGPointMake(x,y);
+    
     [UIView animateWithDuration:1.2f animations:^{
         
         [self.playerFeedback setAlpha:0.0f];
