@@ -11,6 +11,11 @@
 @interface ViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *playerAnswer;
 @property (weak, nonatomic) IBOutlet UILabel *question;
+@property (weak, nonatomic) IBOutlet UILabel *player1score;
+@property (weak, nonatomic) IBOutlet UILabel *player2score;
+@property (weak, nonatomic) IBOutlet UIView *gameOverView;
+@property (weak, nonatomic) IBOutlet UILabel *curPlayer;
+
 
 
 @end

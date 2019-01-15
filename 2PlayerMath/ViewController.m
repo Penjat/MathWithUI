@@ -22,7 +22,18 @@
     [super viewDidLoad];
     _gameManager = [[GameManager alloc]init];
     [self getRandomQuestion];
-    self.playerAnswer.text = @"0";
+    self.playerAnswer.text = @"";
+    [self updateScores ];
+    [self showCurPlayer];
+}
+- (IBAction)pressedPlayAgain:(id)sender {
+    self.gameOverView.hidden = YES;
+    [self.gameManager reset];
+    [self getRandomQuestion];
+    self.playerAnswer.text = @"";
+    [self updateScores ];
+    [self showCurPlayer];
+    
 }
 
 
@@ -32,11 +43,36 @@
     
 }
 - (IBAction)subimtAnswer:(id)sender {
-    [self.gameManager submitAnswer];
+    if([self.gameManager submitAnswer]){
+        [self updateScores];
+        if([self.gameManager checkPlayer1Gameover]){
+            self.gameOverView.hidden = false;
+            return;
+        }
+        if([self.gameManager checkPlayer2Gameover]){
+            self.gameOverView.hidden = false;
+            return;
+        }
+        
+    }
+    [self showCurPlayer];
     [self getRandomQuestion];
-    self.playerAnswer.text = @"0";
+    self.playerAnswer.text = @"";
 }
-
+-(void)showCurPlayer{
+    if([self.gameManager isPlayer1]){
+        self.curPlayer.text = @"Player 1";
+        self.curPlayer.textColor = UIColor.redColor;
+        return;
+    }
+    self.curPlayer.text = @"Player 2";
+    self.curPlayer.textColor = UIColor.blueColor;
+}
+-(void)updateScores{
+    _player1score.text = [NSString stringWithFormat:@"player 1 lives: %li",_gameManager.player1Lives ];
+    _player2score.text = [NSString stringWithFormat:@"player 2 lives: %li",_gameManager.player2Lives ];
+    
+}
 
 
 -(void)getRandomQuestion{

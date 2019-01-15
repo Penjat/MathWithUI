@@ -14,6 +14,7 @@
     NSInteger _correctAnswer;
     
     
+    
 }
 
 @end
@@ -28,6 +29,7 @@
         _player2 = [[Player alloc]init];
         _player1Lives = 3;
         _player2Lives = 3;
+        _isPlayer1= YES;
     }
     return self;
 }
@@ -38,7 +40,9 @@
     
     return self.curAnswer;
 }
--(void)submitAnswer{
+
+-(BOOL)submitAnswer{
+    //TODO return YES if should update score
     NSLog(@"current answer is %li",self.curAnswer);
     if(self.curAnswer == _correctAnswer){
         NSLog(@"correct" );
@@ -46,15 +50,47 @@
         
     }else{
         NSLog(@"incorrect" );
+        [self loseLife ];
+        self.isPlayer1 = !self.isPlayer1;
+        _curAnswer = 0;
+        return YES;
     }
+    self.isPlayer1 = !self.isPlayer1;
     _curAnswer = 0;
-    
+    return NO;
 }
 -(NSString*)getRandomQuestion{
     NSInteger firstNumber = arc4random_uniform(20)+1;
     NSInteger secondNumber = arc4random_uniform(20)+1;
-    correctAnswer = firstNumber + secondNumber;
+    _correctAnswer = firstNumber + secondNumber;
     
-    return [NSString stringWithFormat:@"Player 1: %li + %li",firstNumber,secondNumber ];
+    return [NSString stringWithFormat:@"%li + %li",firstNumber,secondNumber ];
+}
+-(void)loseLife{
+    if(self.isPlayer1){
+        self.player1Lives--;
+        
+        return;
+    }
+    self.player2Lives--;
+    
+}
+-(BOOL)checkPlayer1Gameover{
+    if(_player1Lives <= 0){
+        return YES;
+    }
+    return NO;
+}
+-(BOOL)checkPlayer2Gameover{
+    if(_player2Lives <= 0){
+        return YES;
+    }
+    return NO;
+}
+-(void)reset{
+    
+    _player1Lives = 3;
+    _player2Lives = 3;
+    _isPlayer1= YES;
 }
 @end

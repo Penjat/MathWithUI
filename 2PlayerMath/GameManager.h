@@ -16,11 +16,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSInteger curAnswer;
 @property NSInteger player1Lives;
 @property NSInteger player2Lives;
+@property BOOL isPlayer1;
 
 -(instancetype)init;
 -(NSInteger)addToAnswer:(NSInteger)nextDigit;
--(void)submitAnswer;
+-(BOOL)submitAnswer;
 -(NSString*)getRandomQuestion;
+-(BOOL)checkPlayer1Gameover;
+-(BOOL)checkPlayer2Gameover;
+-(void)reset;
 @end
 
 NS_ASSUME_NONNULL_END
